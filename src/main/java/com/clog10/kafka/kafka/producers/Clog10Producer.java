@@ -24,9 +24,9 @@ public class Clog10Producer {
         props.put("linger.ms", "10");
 
         try (Producer<String, String> producer = new KafkaProducer<>(props);) {
-            for (int i = 0; i < 1000000; i++) {
+            for (int i = 0; i < 21; i++) {
                 producer.send(
-                        new ProducerRecord<>("clog10-topic", String.valueOf(i).concat(": clog10-key"), "clog10-value"));
+                        new ProducerRecord<>("clog10-topic", String.valueOf(i).concat(": clog10-key"), String.valueOf(i).concat("-clog10-value")));
             }
             producer.flush();
         }
