@@ -28,8 +28,9 @@ public class Clog10Consumer {
             consumer.subscribe(Arrays.asList("clog10-topic"));
             while (true) {
                 ConsumerRecords<String, String> consumerRecords = consumer.poll(Duration.ofMillis(100));
-                for(var consumerRecord: consumerRecords){
-                    log.info("Offset = {}, Partition = {}, Value = {}", consumerRecord.offset(), consumerRecord.partition(), consumerRecord.value());
+                for (var consumerRecord : consumerRecords) {
+                    log.info("Offset = {}, Partition = {}, Value = {}, Key = {}", consumerRecord.offset(),
+                            consumerRecord.partition(), consumerRecord.value(), consumerRecord.key());
                 }
             }
         }
